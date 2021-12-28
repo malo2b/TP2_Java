@@ -15,7 +15,7 @@ public class Main {
         classe.add(pierrelouis);
         classe.add(nicolas);
         System.out.println(classe);
-        classe.sort();
+//        classe.sort();
     }
 
 }

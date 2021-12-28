@@ -1,7 +1,6 @@
 package com.ex2;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Mot {
 
@@ -17,10 +16,6 @@ public class Mot {
         char[] tempArray = mot.toCharArray();
         Arrays.sort(tempArray);
         motTrie = new String(tempArray);
-    }
-
-    public boolean isAnagram(Mot pMot) {
-        return (Objects.equals(motTrie, pMot.getMotTrie()));
     }
 
     public int length() {
