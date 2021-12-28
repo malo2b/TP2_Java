@@ -43,7 +43,9 @@ public class ListeMots {
     // Tri millitaire
     public ArrayList<String> getMotsOrMilitaire() {
         mots = getMotsLexico();
-        mots.sort((a, b) -> Integer.compare(a.length(), b.length()));
+        mots.sort((a, b) -> {
+            return Integer.compare(a.length(), b.length());
+        });
         return mots;
     }
 
