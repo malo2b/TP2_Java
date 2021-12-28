@@ -6,13 +6,17 @@ import java.util.stream.Collectors;
 
 public class ListeMots {
 
-    private final ArrayList<String> mots;
+    private ArrayList<String> mots;
 
     public ListeMots() {
         mots = new ArrayList<>();
+        mots.add("poisons");
         mots.add("poisson");
+        mots.add("aaerty");
         mots.add("azerty");
         mots.add("wagon");
+        mots.add("aagon");
+        mots.add("aaerty");
     }
 
     public void addMot(String mot) {
@@ -31,16 +35,25 @@ public class ListeMots {
 
     // Tri inv lexico
     public ArrayList<String> getMotsInvLexico() {
+        mots = getMotsLexico();
         Collections.reverse(mots);
         return mots;
     }
+
+    // Tri millitaire
+    public ArrayList<String> getMotsOrMilitaire() {
+        mots = getMotsLexico();
+        mots.sort((a, b) -> Integer.compare(a.length(), b.length()));
+        return mots;
+    }
+
 
     @Override
     public String toString() {
         return "ListeMots { \n" +
                 "args avant tri:" + getMots() + "\n" +
                 "tri lexico:" + getMotsLexico() + "\n" +
-                "tri militaire:" + "\n" +
+                "tri militaire:" + getMotsOrMilitaire()  + "\n" +
                 "tri inverse lexico:" + getMotsInvLexico() + "\n" +
                 " } ";
     }
