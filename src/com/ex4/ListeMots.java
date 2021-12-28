@@ -2,6 +2,7 @@ package com.ex4;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class ListeMots {
@@ -43,9 +44,7 @@ public class ListeMots {
     // Tri millitaire
     public ArrayList<String> getMotsOrMilitaire() {
         mots = getMotsLexico();
-        mots.sort((a, b) -> {
-            return Integer.compare(a.length(), b.length());
-        });
+        mots.sort(Comparator.comparingInt(String::length));
         return mots;
     }
 
