@@ -1,12 +1,10 @@
 package com.ex5;
 
-import java.util.Comparator;
+public class Personne implements Comparable<Personne> {
 
-public class Personne implements Comparator<Personne> {
-
-    private String nom;
-    private String prenom;
-    private int age;
+    private final String nom;
+    private final String prenom;
+    private final int age;
 
     public Personne(String nom, String prenom, int age) {
         this.nom = nom;
@@ -26,52 +24,55 @@ public class Personne implements Comparator<Personne> {
         return age;
     }
 
+    @Override
+    public String toString() {
+        return nom + " " + prenom + " (" + age + ")";
+    }
+
     /**
-     * Compares its two arguments for order.  Returns a negative integer,
-     * zero, or a positive integer as the first argument is less than, equal
-     * to, or greater than the second.<p>
-     * <p>
-     * The implementor must ensure that {@link Integer#signum
-     * signum}{@code (compare(x, y)) == -signum(compare(y, x))} for
-     * all {@code x} and {@code y}.  (This implies that {@code
-     * compare(x, y)} must throw an exception if and only if {@code
-     * compare(y, x)} throws an exception.)<p>
-     * <p>
-     * The implementor must also ensure that the relation is transitive:
-     * {@code ((compare(x, y)>0) && (compare(y, z)>0))} implies
-     * {@code compare(x, z)>0}.<p>
-     * <p>
-     * Finally, the implementor must ensure that {@code compare(x,
-     * y)==0} implies that {@code signum(compare(x,
-     * z))==signum(compare(y, z))} for all {@code z}.
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
      *
-     * @param o1 the first object to be compared.
-     * @param o2 the second object to be compared.
-     * @return a negative integer, zero, or a positive integer as the
-     * first argument is less than, equal to, or greater than the
-     * second.
-     * @throws NullPointerException if an argument is null and this
-     *                              comparator does not permit null arguments
-     * @throws ClassCastException   if the arguments' types prevent them from
-     *                              being compared by this comparator.
-     * @apiNote It is generally the case, but <i>not</i> strictly required that
-     * {@code (compare(x, y)==0) == (x.equals(y))}.  Generally speaking,
-     * any comparator that violates this condition should clearly indicate
-     * this fact.  The recommended language is "Note: this comparator
-     * imposes orderings that are inconsistent with equals."
+     * <p>The implementor must ensure {@link Integer#signum
+     * signum}{@code (x.compareTo(y)) == -signum(y.compareTo(x))} for
+     * all {@code x} and {@code y}.  (This implies that {@code
+     * x.compareTo(y)} must throw an exception if and only if {@code
+     * y.compareTo(x)} throws an exception.)
+     *
+     * <p>The implementor must also ensure that the relation is transitive:
+     * {@code (x.compareTo(y) > 0 && y.compareTo(z) > 0)} implies
+     * {@code x.compareTo(z) > 0}.
+     *
+     * <p>Finally, the implementor must ensure that {@code
+     * x.compareTo(y)==0} implies that {@code signum(x.compareTo(z))
+     * == signum(y.compareTo(z))}, for all {@code z}.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     * @throws NullPointerException if the specified object is null
+     * @throws ClassCastException   if the specified object's type prevents it
+     *                              from being compared to this object.
+     * @apiNote It is strongly recommended, but <i>not</i> strictly required that
+     * {@code (x.compareTo(y)==0) == (x.equals(y))}.  Generally speaking, any
+     * class that implements the {@code Comparable} interface and violates
+     * this condition should clearly indicate this fact.  The recommended
+     * language is "Note: this class has a natural ordering that is
+     * inconsistent with equals."
      */
     @Override
-    public int compare(Personne o1, Personne o2) {
+    public int compareTo(Personne o) {
         int result;
         // Verification age
-        if (o1.getAge() - o2.getAge() != 0)
-            result = o1.getAge() - o2.getAge();
+        if (age - o.getAge() != 0)
+            result = age - o.getAge();
         else { // Verification nom
-            if (o1.getNom().toLowerCase().compareTo(o2.getNom().toLowerCase()) != 0)
-                result = o1.getNom().toLowerCase().compareTo(o2.getNom().toLowerCase());
+            if (nom.toLowerCase().compareTo(o.getNom().toLowerCase()) != 0)
+                result = nom.toLowerCase().compareTo(o.getNom().toLowerCase());
             else // Verification prenom
-                if (o1.getPrenom().toLowerCase().compareTo(o2.getPrenom().toLowerCase()) != 0)
-                    result = o1.getPrenom().toLowerCase().compareTo(o2.getPrenom().toLowerCase());
+                if (prenom.toLowerCase().compareTo(o.getPrenom().toLowerCase()) != 0)
+                    result = prenom.toLowerCase().compareTo(o.getPrenom().toLowerCase());
                 else
                     result = 0;
         }

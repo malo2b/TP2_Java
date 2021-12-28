@@ -24,7 +24,7 @@ public class Anagramme {
                 anagrammes.put(mot.getMotTrie(), mot.getMot());
             }
             for (String motTrie : anagrammes.keySet()) {
-                if (anagrammes.get(motTrie).size() >= 8) {
+                if (anagrammes.get(motTrie).size() >= nbMinAnagrammes) {
                     System.out.println(anagrammes.get(motTrie).size() + "\t" + anagrammes.get(motTrie));
                 }
             }
