@@ -16,14 +16,14 @@ public class Anagramme {
      */
     public static void printAnagrammes(String fileName, int nbMinAnagrammes) {
         try {
-            Scanner scan = new Scanner(new File(fileName));
-            ListMultimap<String, String> anagrammes = ArrayListMultimap.create();
+            Scanner scan = new Scanner(new File(fileName)); // Scan des mots dans fichier
+            ListMultimap<String, String> anagrammes = ArrayListMultimap.create(); // K: mot-trié V: mots, K identique pour tout les anagrammes
             Mot mot;
             while (scan.hasNext()) {
                 mot = new Mot(scan.next());
                 anagrammes.put(mot.getMotTrie(), mot.getMot());
             }
-            for (String motTrie : anagrammes.keySet()) {
+            for (String motTrie : anagrammes.keySet()) { // Affichage
                 if (anagrammes.get(motTrie).size() >= nbMinAnagrammes) {
                     System.out.println(anagrammes.get(motTrie).size() + "\t" + anagrammes.get(motTrie));
                 }
