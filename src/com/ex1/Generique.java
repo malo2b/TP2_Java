@@ -5,6 +5,13 @@ public class Generique<E> {
     private E element1;
     private E element2;
 
+    /**
+     * Constructeur
+     * Deux éléments doivent être de type différents
+     * @param element1 Premier élément du tuple
+     * @param element2 Deuxieme élément du tuple
+     * @throws NotHeterogeneousTypeException Exception si tentative d'ajout de deux éléments de meme type
+     */
     public Generique(E element1, E element2) throws NotHeterogeneousTypeException {
         if (element1.getClass() != element2.getClass()) {
             this.element1 = element1;
@@ -14,16 +21,30 @@ public class Generique<E> {
         }
     }
 
+    /**
+     * Constructeur
+     * Pour un seul élément
+     * @param element1 Premier élément du tuple
+     */
     public Generique(E element1) {
         this.element1 = element1;
         this.element2 = null;
     }
 
+    /**
+     * Constructeur
+     * Sans saisie de valeur a la construction
+     */
     public Generique() {
         element1 = null;
         element2 = null;
     }
 
+    /**
+     * Ajout d'un élément dans le tuple
+     * @param element Element a ajouter
+     * @throws NotHeterogeneousTypeException Exception si tentative deux éléments de meme type dans le tuple
+     */
     public void setAnElementValue(E element) throws NotHeterogeneousTypeException {
         if (element1 == null) {
             element1 = element;
@@ -38,14 +59,17 @@ public class Generique<E> {
         }
     }
 
-    public E getElement1() {
-        return element1;
-    }
+    public E getElement1() { return element1; }
 
     public E getElement2() {
         return element2;
     }
 
+    /**
+     * Mutateur élément 1
+     * @param element Nouvelle valeur de l'élément
+     * @throws NotHeterogeneousTypeException Exception si nouvelle valeur possède un type identique a celui de l'aitre élément du tuple
+     */
     public void setElement1(E element) throws NotHeterogeneousTypeException {
         if (element2 != null) {
             if (element2.getClass() != element.getClass()) {
@@ -58,6 +82,11 @@ public class Generique<E> {
         }
     }
 
+    /**
+     * Mutateur élément 2
+     * @param element Nouvelle valeur de l'élément
+     * @throws NotHeterogeneousTypeException Exception si nouvelle valeur possède un type identique a celui de l'aitre élément du tuple
+     */
     public void setElement2(E element) throws NotHeterogeneousTypeException {
         if (element1 != null) {
             if (element1.getClass() != element.getClass()) {
